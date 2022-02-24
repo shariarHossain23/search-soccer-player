@@ -68,7 +68,7 @@ body {
   color: rgb(221, 18, 18);
   font-size: 25px;
 }
-#error {
+#error-msg {
   text-align: center;
   color: rgb(221, 18, 18);
   font-size: 25px;

@@ -1,6 +1,8 @@
+document.getElementById("error-msg").style.display = "none";
 const playerData = async () =>{
     const searchInput = document.getElementById("search-input");
     const searchText =searchInput.value;
+    document.getElementById("error-msg").style.display = "none";
 
     // clear display
     searchInput.value = "";
@@ -11,8 +13,12 @@ const playerData = async () =>{
         const data = await res.json();
         showDisplay(data.player)
     } catch (error) {
-        console.log(error)
+        showError(error)
     }
+}
+const showError = error => {
+    document.getElementById("error-msg").style.display = "block";
+    document.getElementById("spinner").classList.remove('loader')
 }
 
 const showDisplay =  players =>{
