@@ -9,7 +9,6 @@ const playerData = async () =>{
         const res = await fetch(url);
         const data = await res.json();
         showDisplay(data.player)
-        // console.log(data.player[0])
     } catch (error) {
         console.log(error)
     }
@@ -20,8 +19,8 @@ const showDisplay =  players =>{
     // clear display
     display.textContent = "";
     document.getElementById("display-details").textContent = "";
-    if(players === undefined && players === null){
-        console.log("hi")
+    if(players === undefined || players === null){
+        document.getElementById("error-text").innerText = "no result found"
     }
     else{
         players.forEach(player => {
@@ -37,6 +36,7 @@ const showDisplay =  players =>{
             <button onclick="playerDetails(${player.idPlayer})">details</button>
             `
             display.appendChild(playerDiv)
+            document.getElementById("error-text").innerText = ""
         });
     }
 }
@@ -62,11 +62,17 @@ const playerDetailsDisplay = details =>{
     detailsDiv.innerHTML = `
     <img width="300px" src="${details.strThumb}" alt="img not found">
     <p>Name: ${details.strPlayer}</p>
+    <p>Born: ${details.dateBorn}</p>
+    <p>Born Location: ${details.strBirthLocation}</p>
     <p>Nationality: ${details.strNationality}</p>
+    <p>Gender: ${details.strGender}</p>
+    <p>Height: ${details.strHeight}</p>
+    <p>Weight: ${details.strWeight}</p>
     <p>sports: ${details.strSport}</p>
     <p>position: ${details.strPosition}</p>
     <p>Club: ${details.strTeam}</p>
     <p>Shirt: ${details.strNumber}</p>
     `
     displayDetails.appendChild(detailsDiv)
+
 }
