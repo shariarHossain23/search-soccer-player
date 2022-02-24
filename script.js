@@ -5,6 +5,7 @@ const playerData = async () =>{
     // clear display
     searchInput.value = "";
     try {
+        document.getElementById("spinner").classList.add('loader')
         const url = `https://www.thesportsdb.com/api/v1/json/2/searchplayers.php?p=${searchText}`;
         const res = await fetch(url);
         const data = await res.json();
@@ -15,6 +16,7 @@ const playerData = async () =>{
 }
 
 const showDisplay =  players =>{
+    document.getElementById("spinner").classList.remove('loader')
     const display = document.getElementById("display");
     // clear display
     display.textContent = "";
@@ -42,6 +44,7 @@ const showDisplay =  players =>{
 }
  const playerDetails = async details => {
     try {
+        document.getElementById("spinner").classList.add('loader')
         const url =`https://www.thesportsdb.com/api/v1/json/2/lookupplayer.php?id=${details}`;
         const res = await fetch(url);
         const data = await res.json()
@@ -53,6 +56,7 @@ const showDisplay =  players =>{
 
 
 const playerDetailsDisplay = details =>{
+    document.getElementById("spinner").classList.remove('loader')
     const displayDetails = document.getElementById("display-details");
     // clear display = 
     displayDetails.textContent = '';
@@ -76,3 +80,5 @@ const playerDetailsDisplay = details =>{
     displayDetails.appendChild(detailsDiv)
 
 }
+
+
